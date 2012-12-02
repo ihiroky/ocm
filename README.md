@@ -10,7 +10,7 @@ Maps command line arguments to an object annotated by Option and/or Arguments. P
 A field annotated by this anotation shows an option. A property name() shows long name option, and a property alias() shows short (in many case, one character) name option. If a property required() is true, an annotated option is required (default value is false). metaName() and usage() is used when you print option usage.
 
 ## Arguments annotation
-Assigns non-option command line arguments to a field annotated by this annotation. Annotated field must be a concrete subtype of java.util.Collection&lt;String&gt;.
+Assigns non-option command line arguments to a field annotated by this annotation. Annotated field must be a __concrete__ subtype of java.util.Collection&lt;String&gt;.
 
 ## "--" option
 If "--" (exclude ") appears in command line arguments, the right-side arguments of "--" is considered as Arguments targets even though those are started character "-".
