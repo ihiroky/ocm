@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+defaultTasks 'clean', 'assemble'
+
+def buildNumber = System.getenv()['BUILD_NUMBER'];
+if (!buildNumber) {
+    buildNumber = new Date().format("yyyyMMdd-HHmmss")
+}
+def jdkVersion = 1.7
+def encoding = 'UTF-8'
+def libDir = 'lib'
+def mainClass = 'Main'
+
+version = '0.1.' + buildNumber
+sourceCompatibility = jdkVersion
+targetCompatibility = jdkVersion
+[compileJava, compileTestJava].each {
+    it.options.encoding = encoding
+}
+compileJava.options.compilerArgs = ['-Xlint:all']
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.+'
+}
