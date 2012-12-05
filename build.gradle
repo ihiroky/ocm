@@ -3,16 +3,12 @@ apply plugin: 'idea'
 
 defaultTasks 'clean', 'assemble'
 
-def buildNumber = System.getenv()['BUILD_NUMBER'];
-if (!buildNumber) {
-    buildNumber = new Date().format("yyyyMMdd-HHmmss")
-}
-def jdkVersion = 1.7
+version = '1.0'
+project.ext['rootPackage'] = 'net.ihiroky.ocm'
+def jdkVersion = 1.6
 def encoding = 'UTF-8'
-def libDir = 'lib'
-def mainClass = 'Main'
 
-version = '0.1.' + buildNumber
+jar.baseName = 'ocm'
 sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 [compileJava, compileTestJava].each {
@@ -21,9 +17,13 @@ targetCompatibility = jdkVersion
 compileJava.options.compilerArgs = ['-Xlint:all']
 
 repositories {
+    flatDir {
+        dirs 'lib'
+    }
     mavenCentral()
 }
 
 dependencies {
+
     testCompile 'junit:junit:4.+'
 }
