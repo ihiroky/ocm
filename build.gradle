@@ -3,7 +3,7 @@ apply plugin: 'idea'
 
 defaultTasks 'clean', 'assemble'
 
-version = '1.0'
+version = '1.1'
 project.ext['rootPackage'] = 'net.ihiroky.ocm'
 def jdkVersion = 1.6
 def encoding = 'UTF-8'
