@@ -51,7 +51,8 @@ public class ArgumentProcessor {
     private static final String OPTION_PREFIX = "-";
 
     static {
-        Map<Class<?>, Class<? extends FieldOptionHandler<?>>> map = new HashMap<>();
+        Map<Class<?>, Class<? extends FieldOptionHandler<?>>> map =
+                new HashMap<Class<?>, Class<? extends FieldOptionHandler<?>>>();
         map.put(Boolean.TYPE, BooleanFieldOptionHandler.class);
         map.put(Boolean.class, BooleanFieldOptionHandler.class);
         map.put(Byte.TYPE, ByteFieldOptionHandler.class);
@@ -83,10 +84,10 @@ public class ArgumentProcessor {
      * @throws IllegalArgumentTypeException if target has unsupported type fields.
      */
     private void parseAnnotation(Object target) {
-        List<FieldOptionHandler<?>> fieldOptionHandlerList = new ArrayList<>();
+        List<FieldOptionHandler<?>> fieldOptionHandlerList = new ArrayList<FieldOptionHandler<?>>();
         ArgumentsHandler argsHandler = new ArgumentsHandler();
-        Set<String> parsedNames = new HashSet<>();
-        Set<String> parsedAliases = new HashSet<>();
+        Set<String> parsedNames = new HashSet<String>();
+        Set<String> parsedAliases = new HashSet<String>();
         for (Class<?> c = target.getClass(); c != null; c = c.getSuperclass()) {
             for (Field field : c.getDeclaredFields()) {
                 Option option = field.getAnnotation(Option.class);
@@ -165,7 +166,7 @@ public class ArgumentProcessor {
         }
 
         // copy the list because of destructive operations.
-        List<FieldOptionHandler<?>> ohlist = new ArrayList<>(this.optionHandlerList);
+        List<FieldOptionHandler<?>> ohlist = new ArrayList<FieldOptionHandler<?>>(this.optionHandlerList);
         ArgumentsHandler ah = this.argumentsHandler;
 
         for (int i = 0; i < args.length; i++) {

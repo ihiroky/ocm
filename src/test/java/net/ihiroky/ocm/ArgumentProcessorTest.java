@@ -39,7 +39,7 @@ public class ArgumentProcessorTest {
         assertThat(a.boolObject, is(Boolean.TRUE));
         assertThat(a.integer, is(12345));
         assertThat(a.intObject, is(234567));
-        assertThat(a.args, is((LinkedList<String>) Arrays.asList("arg1", "arg2", "arg3")));
+        assertThat(a.args, is(Arrays.asList("arg1", "arg2", "arg3")));
 
         assertThat(a.minusInteger, is(-123));
         assertThat(a.byteValue, is((byte) 127));
@@ -72,7 +72,7 @@ public class ArgumentProcessorTest {
         ArgumentProcessor apd = new ArgumentProcessor();
         apd.parse(ad, args);
         assertThat(ad.integer, is(12345));
-        assertThat(ad.args, is((ArrayList<String>) Arrays.asList("hoge"))); // 引数未指定時はデフォルト優先
+        assertThat(ad.args, is(Arrays.asList("hoge"))); // 引数未指定時はデフォルト優先
     }
 
     @Test
@@ -147,7 +147,7 @@ public class ArgumentProcessorTest {
         } catch (IllegalArgumentTypeException e) {
             assertThat(e.getMessage(), is("unsupported option type : interface java.util.Map, option : m"));
         }
-        assertThat(a.map, is((Map<String, String>) nullValue()));
+        assertThat(a.map, is(nullValue()));
     }
 
     @Test
@@ -201,9 +201,9 @@ public class ArgumentProcessorTest {
         assertThat(base.toString(),
                 is("available options :"
                         + " [-s/--string str] [-b/--boolean bool] [-B/--Boolean Bool] [-i/--integer int] "
-                        + "[-I/--Integer Int] [-m/--minus mint] [-z/--byte byte] [-Z/--Byte Byte] [-y/--char char]"
+                        + "[-I/--Integer Int] [-m/--minus mint] [-z/--byte byte] [-Z/--Byte Byte] [-y/--char char] "
                         + "[-Y/--Character Character] [-x/--short short] [-X/--Short Short] [-w/--float float] "
-                        + "[-W/--Float Float] [-v/--double double] [-V/--Double Double] [-u/--long long]"
+                        + "[-W/--Float Float] [-v/--double double] [-V/--Double Double] [-u/--long long] "
                         + "[-U/--Long Long]" + System.getProperty("line.separator")));
     }
 
@@ -343,7 +343,7 @@ public class ArgumentProcessorTest {
     @Test
     public void testHashSetArguments() throws Exception {
         HashSetArgs args = new ArgumentProcessor().parse(new HashSetArgs(), new String[]{"arg0", "arg1"});
-        assertThat(args.args, is(new HashSet<>(Arrays.asList("arg0", "arg1"))));
+        assertThat(args.args, is(new HashSet<String>(Arrays.asList("arg0", "arg1"))));
     }
 
     private static class StubArgs {
@@ -433,7 +433,7 @@ public class ArgumentProcessorTest {
 
         public StubArgsDefault() {
             bool = Boolean.TRUE;
-            args = new ArrayList<>();
+            args = new ArrayList<String>();
             args.add("hoge");
         }
     }
