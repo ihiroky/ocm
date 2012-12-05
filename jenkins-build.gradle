@@ -9,7 +9,6 @@ def buildNumber = System.getenv()['BUILD_NUMBER'];
 if (!buildNumber) {
     buildNumber = new Date().format("yyyyMMdd-HHmmss")
 }
-version = version + '.' + buildNumber
 
 configurations {
     cobertura
@@ -79,6 +78,6 @@ jar {
         attributes(
             'Main-Class': rootPackage + '.Version',
             'Implementation-Title': rootPackage,
-            'Implementation-Version': version)
+            'Implementation-Version': version + ' ' + buildNumber)
     }
 }
