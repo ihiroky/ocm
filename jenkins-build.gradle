@@ -78,6 +78,6 @@ jar {
         attributes(
             'Main-Class': rootPackage + '.Version',
             'Implementation-Title': rootPackage,
-            'Implementation-Version': version + ' ' + buildNumber)
+            'Implementation-Version': version + '.' + buildNumber)
     }
 }
